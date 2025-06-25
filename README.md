@@ -6,7 +6,7 @@
 |---|---|
 | **Status** | v1.0.0 (Protected Release) |
 | **License** | PostMath Public Research License v1.0 – non-commercial, research-only |
-| **Docs** | <https://marte-ai.github.io/postmath-framework> |
+| **Docs** | <https://github.com/Marte-AI/Postmath-framework> |
 
 ## Quick start
 ```bash
