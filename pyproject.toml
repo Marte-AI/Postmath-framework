@@ -1,0 +1,88 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "postmath"
+version = "1.0.0"
+description = "PostMath™ - A dual-mode semantic engine that fuses linear NLP with non-linear, cascade-oriented operators"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "PostMath Public Research License v1.0"}
+authors = [
+    {name = "Jesús Manuel Soledad Terrazas", email = "jesussoledadt@gmail.com"}
+]
+maintainers = [
+    {name = "Jesús Manuel Soledad Terrazas", email = "jesussoledadt@gmail.com"}
+]
+keywords = ["semantic-analysis", "nlp", "ai", "cascade-dynamics", "uncertainty-mapping", "dual-mode-processing"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Education",
+    "License :: Other/Proprietary License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "Topic :: Text Processing :: Linguistic",
+]
+
+dependencies = [
+    "numpy>=1.21.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "black>=22.0",
+    "flake8>=5.0",
+    "mypy>=0.990",
+]
+docs = [
+    "mkdocs>=1.4",
+    "mkdocs-material>=8.5",
+    "mkdocstrings[python]>=0.19",
+]
+viz = [
+    "matplotlib>=3.5",
+    "networkx>=2.8",
+    "seaborn>=0.12",
+]
+
+[project.urls]
+Homepage = "https://github.com/Marte-AI/Postmath-framework"
+Documentation = "https://github.com/Marte-AI/Postmath-framework#readme"
+Repository = "https://github.com/Marte-AI/Postmath-framework"
+Issues = "https://github.com/Marte-AI/Postmath-framework/issues"
+
+[project.scripts]
+postmath = "postmath.cli:run_comprehensive_demo"
+postmath-interactive = "postmath.cli:interactive_postmath_demo"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["postmath*"]
+exclude = ["tests*", "docs*", "examples*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_functions = ["test_*"]
+python_classes = ["Test*"]
+
+[tool.black]
+line-length = 100
+target-version = ['py39']
+include = '\.pyi?$'
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true

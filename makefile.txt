@@ -1,0 +1,75 @@
+# PostMath Framework Makefile
+# © 2025 Jesús Manuel Soledad Terrazas
+
+.PHONY: help install install-dev test lint format demo bench docs clean
+
+# Default target
+help:
+	@echo "PostMath Framework - Available commands:"
+	@echo "  make install      Install package in editable mode"
+	@echo "  make install-dev  Install with development dependencies"
+	@echo "  make demo         Run comprehensive demo and save assets"
+	@echo "  make bench        Run benchmarks and save results"
+	@echo "  make test         Run unit tests"
+	@echo "  make lint         Run code linting"
+	@echo "  make format       Format code with black"
+	@echo "  make docs         Build documentation"
+	@echo "  make clean        Clean generated files"
+
+# Installation
+install:
+	pip install -e .
+
+install-dev:
+	pip install -e ".[dev,viz,docs]"
+
+# Demo and benchmarking
+demo:
+	@echo "Running PostMath demo..."
+	@mkdir -p assets
+	python -m postmath.cli --mode demo
+	@echo "Demo complete! Check assets/ for generated visualizations."
+
+bench:
+	@echo "Running PostMath benchmarks..."
+	@mkdir -p assets
+	python -m postmath.cli --mode demo > assets/benchmark_output.txt
+	@echo "Benchmarks saved to assets/benchmark_results.json"
+
+# Testing and quality
+test:
+	pytest tests/ -v --cov=postmath --cov-report=html
+
+lint:
+	flake8 postmath/ tests/
+	mypy postmath/
+
+format:
+	black postmath/ tests/
+
+# Documentation
+docs:
+	mkdocs build
+
+docs-serve:
+	mkdocs serve
+
+# Cleanup
+clean:
+	rm -rf build/ dist/ *.egg-info
+	rm -rf .pytest_cache/ .coverage htmlcov/
+	rm -rf docs/site/
+	find . -type d -name __pycache__ -exec rm -rf {} +
+	find . -type f -name "*.pyc" -delete
+
+# Quick commands
+quick-test:
+	python -c "from postmath import PracticalTranslator; t = PracticalTranslator(); print(t.translate_text('Love creates connection')['nonlinear_analysis'])"
+
+# CI/CD helpers
+ci-test:
+	pytest tests/ -v --cov=postmath --cov-report=xml
+
+ci-lint:
+	flake8 postmath/ tests/ --exit-zero
+	mypy postmath/ --ignore-missing-imports

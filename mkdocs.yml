@@ -1,0 +1,109 @@
+site_name: PostMath Framework Documentation
+site_url: https://marte-ai.github.io/Postmath-framework/
+repo_url: https://github.com/Marte-AI/Postmath-framework
+repo_name: Marte-AI/Postmath-framework
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+    - content.code.annotation
+    - content.code.copy
+  language: en
+  icon:
+    logo: material/brain
+
+nav:
+  - Home: index.md
+  - Getting Started:
+    - Installation: getting-started/installation.md
+    - Quick Start: getting-started/quickstart.md
+    - Examples: getting-started/examples.md
+  - User Guide:
+    - Core Concepts: guide/concepts.md
+    - Dual-Mode Processing: guide/dual-mode.md
+    - Cascade Dynamics: guide/cascades.md
+    - Uncertainty Mapping: guide/uncertainty.md
+  - API Reference:
+    - Core: api/core.md
+    - Translator: api/translator.md
+    - Evaluator: api/evaluator.md
+    - CLI: api/cli.md
+  - Theory:
+    - Mathematical Foundation: theory/math.md
+    - PostMath Operators: theory/operators.md
+    - Performance Analysis: theory/performance.md
+  - Contributing:
+    - Guidelines: contributing/guidelines.md
+    - Development: contributing/development.md
+    - License FAQ: LICENSE_FAQ.md
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            show_source: true
+            show_root_heading: true
+            show_root_full_path: false
+            show_object_full_path: false
+            show_category_heading: true
+            show_if_no_docstring: false
+            show_signature: true
+            show_signature_annotations: true
+            separate_signature: true
+            line_length: 80
+            merge_init_into_class: true
+            docstring_style: google
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - admonition
+  - pymdownx.arithmatex:
+      generic: true
+  - footnotes
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.mark
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.tabbed:
+      alternate_style: true
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/Marte-AI/Postmath-framework
+    - icon: fontawesome/solid/paper-plane
+      link: mailto:jesussoledadt@gmail.com
+  version:
+    provider: mike
+
+copyright: |
+  &copy; 2025 <a href="https://github.com/Marte-AI"  target="_blank" rel="noopener">Jesús Manuel Soledad Terrazas</a>
